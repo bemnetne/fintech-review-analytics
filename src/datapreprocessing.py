@@ -44,6 +44,12 @@ def show_duplicates(df):
 def remove_duplicates(df):
     """
     Remove duplicate reviews using review_id.
+
+    Parameters:
+        df (DataFrame): Input dataset
+
+    Returns:
+        DataFrame: Deduplicated dataset
     """
 
     initial_count = len(df)
@@ -57,7 +63,13 @@ def remove_duplicates(df):
     return df
 def handle_missing_values(df):
     """
-    Remove rows with missing review text or rating.
+    Remove rows with missing review text or ratings.
+
+    Parameters:
+        df (DataFrame): Input dataset
+
+    Returns:
+        DataFrame: Cleaned dataset
     """
 
     initial_count = len(df)
@@ -73,7 +85,13 @@ def handle_missing_values(df):
 
 def normalize_dates(df):
     """
-    Convert review dates to YYYY-MM-DD format.
+    Convert review dates into YYYY-MM-DD format.
+
+    Parameters:
+        df (DataFrame): Input dataset
+
+    Returns:
+        DataFrame: Dataset with normalized dates
     """
 
     df["review_date"] = pd.to_datetime(df["review_date"])
@@ -85,7 +103,13 @@ def normalize_dates(df):
 
 def rename_columns(df):
     """
-    Rename columns according to project requirements.
+    Rename dataset columns according to project requirements.
+
+    Parameters:
+        df (DataFrame): Input dataset
+
+    Returns:
+        DataFrame: Dataset with renamed columns
     """
 
     df = df.rename(columns={
@@ -95,25 +119,24 @@ def rename_columns(df):
     })
 
     return df
-
-
-# -----------------------------------
-# Save Dataset Function
-# -----------------------------------
-
 def save_dataset(df, filename):
     """
-    Save DataFrame to CSV.
+    Save DataFrame to CSV file.
+
+    Parameters:
+        df (DataFrame): Dataset to save
+        filename (str): Output filename
     """
     print(filename)
-    df.to_csv(f"../data/{filename}", index=False)
+    df.to_csv(f"../data/processed/{filename}", index=False)
     # df.to_csv(f"../data/{filename}", index=False)
 
     print(f"\nDataset saved as {filename}")
-# def save_dataset(df, filename):
-
-#     path = Path("../data") / filename
-
-#     df.to_csv(path, index=False)
-
-#     print(f"Saved to: {path.resolve()}")
+def load_data(filepath):
+    """Load a stock CSV file and return a clean, date-indexed DataFrame."""
+    df = pd.read_csv(filepath)
+    # df['date'] = pd.to_datetime(df['date'])
+    # df = df.set_index('date')
+    # df = df.sort_index()
+    # print(f"Loaded {len(df)} rows from '{filepath}'")
+    return df
