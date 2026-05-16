@@ -123,6 +123,8 @@ def rename_columns(df):
     })
 
     return df
+
+
 def save_dataset(df, filename):
     """
     Save DataFrame to CSV file.
@@ -136,6 +138,8 @@ def save_dataset(df, filename):
     # df.to_csv(f"../data/{filename}", index=False)
 
     print(f"\nDataset saved as {filename}")
+
+
 def load_data(filepath):
     """Load a stock CSV file and return a clean, date-indexed DataFrame."""
     df = pd.read_csv(filepath)
