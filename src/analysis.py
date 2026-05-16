@@ -6,7 +6,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 def tokenize_text(text):
     """
-    Split text into individual words/tokens.
+    Split text into individual words.
     """
 
     # Convert to lowercase
@@ -24,7 +24,8 @@ def tokenize_text(text):
 # -----------------------------------
 # 2. Stop-word Removal Function
 # -----------------------------------
-
+stop_words = set(stopwords.words('english'))
+nltk.download('stopwords')
 def remove_stopwords(tokens):
     """
     Remove common English stopwords.
