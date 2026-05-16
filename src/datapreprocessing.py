@@ -1,6 +1,10 @@
 import pandas as pd
 from IPython.display import display
 from pathlib import Path
+import re
+import nltk
+from nltk.corpus import stopwords
+
 def remove_nulls(df):
     """Remove rows that have any missing values. Print a summary of what was removed."""
     before = len(df)
@@ -140,3 +144,25 @@ def load_data(filepath):
     # df = df.sort_index()
     # print(f"Loaded {len(df)} rows from '{filepath}'")
     return df
+
+stop_words = set(stopwords.words('english'))
+nltk.download('stopwords')
+def preprocess_text(text):
+
+    # Convert text to lowercase
+    text = str(text).lower()
+
+    # Remove punctuation and numbers
+    text = re.sub(r'[^a-zA-Z\s]', '', text)
+
+    # Split text into words
+    words = text.split()
+
+    # Remove stopwords
+    words = [
+        word for word in words
+        if word not in stop_words
+    ]
+
+    # Join cleaned words
+    return " ".join(words)
