@@ -170,3 +170,43 @@ def preprocess_text(text):
 
     # Join cleaned words
     return " ".join(words)
+def identify_theme(text):
+    """
+    Assign business-related themes
+    using keyword matching.
+    """
+
+    text = text.lower()
+
+    # Account Access Issues
+    if any(word in text for word in [
+        "login", "password", "access", "account", "security", "secured", "phone", "number"
+    ]):
+        return "Account Access & Security"
+
+    # Transaction Performance
+    elif any(word in text for word in [
+        "transfer", "transaction", "transactions", "payment", "money", "balance", "receipt", "send", "banking", "mobile banking", "amole", "telebirr"
+    ]):
+        return "Transaction & Banking Services"
+    # UI & User Experience
+    elif any(word in text for word in [
+        "good", "best", "nice", "excellent", "amazing", "wow", "love", "happy", "great", "good job", "app good", "easy", "easy use", "secure", "secured"
+    ]):
+        return "UI & User Experience"
+
+    # Feature Requests
+    elif any(word in text for word in [
+       "update", "improve", "need", "needs", "option", "change", "better", "new", "mobile app", "application"
+    ]):
+        return "Feature Improvement & User Requests"
+    
+    # App Performance & Technical Issues
+    elif any(word in text for word in [
+       "slow", "doesnt work", "error", "keeps","poor", "issue", "problem", "bad", "worst","open", "fix", "tried", "frequently", "version", "android"
+     ]):
+        return "App Performance & Technical Issues"
+         
+    
+    else:
+        return "Other"
