@@ -134,7 +134,7 @@ def save_dataset(df, filename):
         filename (str): Output filename
     """
     print(filename)
-    df.to_csv(f"../data/processed/{filename}", index=False)
+    df.to_csv(f"../data/processed/{filename}", index=False,encoding="utf-8-sig")
     # df.to_csv(f"../data/{filename}", index=False)
 
     print(f"\nDataset saved as {filename}")
